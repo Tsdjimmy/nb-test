@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  users:
+    build:
+      context: ./users
+    ports:
+      - "8001:8000"
+    depends_on:
+      - rabbitmq
+      - mysql
+
+  notifications:
+    build:
+      context: ./notifications
+    depends_on:
+      - rabbitmq
+      - mysql
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: symfony
+      MYSQL_USER: symfony
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3306:3306"
+
