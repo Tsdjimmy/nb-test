@@ -11,12 +11,11 @@ framework:
 
         routing:
             # Route your messages to the transports
-             'App\Event\UserCreatedEvent': amqp
-        
+            'App\EventListener\UserCreatedListener': amqp
+
         buses:
             event.bus:
                 default_middleware: allow_no_handlers
-
 
 # when@test:
 #    framework:

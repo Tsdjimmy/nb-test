@@ -1,6 +1,6 @@
 FROM php:8.2-fpm
 
-WORKDIR /var/www/users
+WORKDIR /var/www/my-notification-service
 
 RUN apt-get update && apt-get install -y \
     git \
